@@ -205,9 +205,11 @@ VALUES
 -- Tabla conexion_segmento_unidad: Tabla intermedia para una correcta conexión entre Segmentos_planta y Unidad_proceso
 INSERT INTO conexion_segmento_unidad (id_segmento, id_unidad, tipo_conexion, descripcion)
 VALUES
-(1, 1, 'ENTRADA', 'Alimenta al reactor FCC'),
-(2, 1, 'SALIDA', 'Salida del reactor FCC'),
-(3, 2, 'ENTRADA', 'Alimenta torre de destilación');
+(2, 1, 'ENTRADA', 'Alimenta al reactor FCC'),
+(3, 1, 'SALIDA', 'Salida del reactor FCC'),
+(4, 2, 'ENTRADA', 'Alimenta torre de destilación');
+
+select * from conexion_segmento_unidad;
 
 -- Tabla Loops_control : Los loops de control de proceso que contienen los intrumentos.
 INSERT INTO Loops_control (codigo_loop, descripcion)
@@ -351,4 +353,9 @@ CROSS JOIN Nums;
 
 
 use SCADA_OLTP;
+select * from Segmentos_planta;
+select * from Lecturas_scada;
 select * from Instrumento_tag;
+UPDATE Instrumento_tag
+SET id_segmento = 4
+WHERE id_tag = 6;
